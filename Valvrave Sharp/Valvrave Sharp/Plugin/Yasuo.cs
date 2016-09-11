@@ -30,7 +30,7 @@
     {
         #region Constants
 
-        private const float QDelay = 0.39f, Q2Delay = 0.35f, QDelays = 0.22f, Q2Delays = 0.315f;
+        private const float QDelay = 0.39f, Q2Delay = 0.35f, QDelays = 0.225f, Q2Delays = 0.315f;
 
         private const int RWidth = 400;
 
