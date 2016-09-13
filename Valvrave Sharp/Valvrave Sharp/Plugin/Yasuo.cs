@@ -350,7 +350,9 @@
                     var pos =
                         (Player.ServerPosition.ToVector2()
                          + FlashRange * new Vector2(1, 0).Rotated((float)(Math.PI * i / 180.0))).ToVector3();
-                    var hits = Variables.TargetSelector.GetTargets(Q3.Width, Q.DamageType, true, pos).Count;
+                    var hits =
+                        Variables.TargetSelector.GetTargets(Q3.Width, Q.DamageType, true, pos)
+                            .Count(a => Q3.WillHit(Q3.GetPredPosition(a), pos));
                     if (hits > bestHit)
                     {
                         bestHit = hits;
@@ -359,7 +361,7 @@
                 }
                 if (bestPos.IsValid() && Q3.Cast(bestPos))
                 {
-                    DelayAction.Add(5, () => Player.Spellbook.CastSpell(Flash, bestPos));
+                    DelayAction.Add(10, () => Player.Spellbook.CastSpell(Flash, bestPos));
                 }
             }
             if (!E.IsReady())
