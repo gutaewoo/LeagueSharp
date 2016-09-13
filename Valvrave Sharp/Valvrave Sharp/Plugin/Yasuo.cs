@@ -414,7 +414,10 @@
             return (underTower || !posAfterE.IsUnderEnemyTurret())
                    && (inQCir
                            ? Q3.WillHit(pos, posAfterE)
-                           : posAfterE.Distance(pos) < (!isAirBlade ? pos.DistanceToPlayer() : R.Range))
+                           : (isAirBlade
+                                  ? posAfterE.Distance(pos) < R.Range
+                                  : posAfterE.Distance(pos) <= pos.DistanceToPlayer()
+                                    || pos.ProjectOn(Player.ServerPosition, posAfterE).IsOnSegment))
                    && Evade.IsSafePoint(posAfterE.ToVector2()).IsSafe;
         }
 
